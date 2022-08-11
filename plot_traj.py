@@ -12,7 +12,7 @@ alpha = 2*np.pi - alpha
 
 
 RA,Dec = 159.67677,-61.26380
-plx = True 
+plx = False
 npoints = 2000
 # geometry configuration
 offset_x = s*(-0.5+1/(1+q)) if s < 1 else s/2-q/(1+q)/s
@@ -53,9 +53,9 @@ ax.axis('equal')
 t = [9630,9670,9700,t0]
 for i in t:
     tau = (i-t0)/tE
-    qn,qe = geta(i)
-    dtau = pi1*qn+pi2*qe
-    du0 = -pi1*qe+pi2*qn
+    if plx : qn,qe = geta(i)
+    dtau = pi1*qn+pi2*qe if plx else 0
+    du0 = -pi1*qe+pi2*qn if plx else 0
     taup = tau + dtau
     u0p = u0 - du0
     xs = taup*np.cos(alpha)+u0p*np.sin(alpha) #- offset_x
