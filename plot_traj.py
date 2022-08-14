@@ -12,7 +12,7 @@ alpha = 2*np.pi - alpha
 
 
 RA,Dec = 159.67677,-61.26380
-plx = False
+plx = 0 
 npoints = 2000
 # geometry configuration
 offset_x = s*(-0.5+1/(1+q)) if s < 1 else s/2-q/(1+q)/s
@@ -60,7 +60,7 @@ for i in t:
     u0p = u0 - du0
     xs = taup*np.cos(alpha)+u0p*np.sin(alpha) #- offset_x
     ys =-taup*np.sin(alpha)+u0p*np.cos(alpha) #- offset_y
-    circle = plt.Circle((xs,ys),rho/2,color='r',fill=False)
+    circle = plt.Circle((xs,ys),rho,color='r',fill=False)
     ax.add_patch(circle)
     ax.annotate('{:.1f}'.format(i), xy=[xs,ys], xytext=(-5, -15),
    textcoords='offset points', size='small',)
